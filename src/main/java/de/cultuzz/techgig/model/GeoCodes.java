@@ -1,21 +1,24 @@
 package de.cultuzz.techgig.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Geo_Codes")
+@Table(name="Geo_Codes",catalog="RelationalDB")
 public class GeoCodes {
 	
-	
+	@Id
 	private Integer hotel_id;
 	
+	@Column
 	private Integer langitude;
 	
+	@Column
 	private Integer latitude;
 	
-	@Id
+	
 	public Integer getHotel_id() {
 		return hotel_id;
 	}

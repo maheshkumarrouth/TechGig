@@ -1,40 +1,23 @@
 package de.cultuzz.techgig.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="Hotel_Details",catalog="RelationalDB")
-public class HotelDetails {
-
+@Table(name="test",catalog="RelationalDB")
+public class Test {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@Column
 	private Integer id;
 	
-	@Column(name="name")
+	@Column
 	private String name;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	private GeoCodes geoCodes;
-
-	public HotelDetails(){
-		
-	}
-	
-	public HotelDetails(String name, GeoCodes geoCodes) {
-		super();
-		this.name = name;
-		this.geoCodes = geoCodes;
-	}
-
 
 	public Integer getId() {
 		return id;
@@ -43,8 +26,7 @@ public class HotelDetails {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
+
 	public String getName() {
 		return name;
 	}
@@ -53,13 +35,5 @@ public class HotelDetails {
 		this.name = name;
 	}
 	
-
-	public GeoCodes getGeoCodes() {
-		return geoCodes;
-	}
-
-	public void setGeoCodes(GeoCodes geoCodes) {
-		this.geoCodes = geoCodes;
-	}
-		
+	
 }
