@@ -16,7 +16,7 @@ public class TestController {
 	@RequestMapping("/hello")
 	public String sayHai(){
 		try {
-			System.out.println(testDAOService.findAllData2().size());
+			System.out.println(testDAOService.findAllData().size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

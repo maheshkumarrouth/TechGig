@@ -3,6 +3,7 @@ package de.cultuzz.techgig.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class HotelDetails {
 	@Column(name="name")
 	private String name;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="hotelDetails")
 	private GeoCodes geoCodes;
 
 	public HotelDetails(){

@@ -1,5 +1,6 @@
 package de.cultuzz.techgig.test;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -24,6 +25,10 @@ public class TestDAOService {
 		 System.out.println(mySessionFactory+"mySessionFactory");
 		 Criteria criteria = mySessionFactory.getCurrentSession().createCriteria(de.cultuzz.techgig.model.HotelDetails.class);
 		 List<HotelDetails> list = criteria.list();
+		 for(Iterator<HotelDetails> it = list.iterator();it.hasNext();){
+			 HotelDetails hotelDetails = it.next();
+			 System.out.println("hotelDetails.getGeoCodes()"+hotelDetails.getGeoCodes().getLangitude());
+		 }
 		 return list;
 	 }
 	
