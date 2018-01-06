@@ -28,7 +28,7 @@ public class GeoCodes {
 	@Column
 	private Integer latitude;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private HotelDetails hotelDetails;
 	

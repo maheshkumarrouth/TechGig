@@ -1,5 +1,7 @@
 package de.cultuzz.techgig.model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,35 +9,35 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="Hotel_Details",catalog="RelationalDB")
-public class HotelDetails {
-
+@Table
+public class Room {
+	
 	@Id
+	@Column
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="name")
+	@Column
 	private String name;
 	
-	@OneToOne(cascade=CascadeType.ALL,mappedBy="hotelDetails",fetch=FetchType.LAZY)
-	private GeoCodes geoCodes;
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="room",fetch=FetchType.LAZY)
+	private Set<Packages> packages;
 
-	public HotelDetails(){
+	
+	public Room() {
 		
 	}
 	
-	public HotelDetails(String name, GeoCodes geoCodes) {
+	public Room(Integer id, String name, Set<Packages> packages) {
 		super();
+		this.id = id;
 		this.name = name;
-		this.geoCodes = geoCodes;
+		this.packages = packages;
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -44,8 +46,7 @@ public class HotelDetails {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
+
 	public String getName() {
 		return name;
 	}
@@ -53,14 +54,13 @@ public class HotelDetails {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Set<Packages> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(Set<Packages> packages) {
+		this.packages = packages;
+	}
 	
-
-	public GeoCodes getGeoCodes() {
-		return geoCodes;
-	}
-
-	public void setGeoCodes(GeoCodes geoCodes) {
-		this.geoCodes = geoCodes;
-	}
-		
 }
