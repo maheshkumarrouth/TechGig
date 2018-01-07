@@ -52,61 +52,70 @@ INSERT INTO `Hotel_Details` (`id`, `name`, `lastupdate`) VALUES
 -- Dumping structure for table RelationalDB.Packages
 CREATE TABLE IF NOT EXISTS `Packages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` int(11) DEFAULT NULL,
-  `hotel_id` int(11) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `room_id` int(11) NOT NULL,
   `lastupdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `FK_Packages_Hotel_Details` (`hotel_id`),
-  CONSTRAINT `FK_Packages_Hotel_Details` FOREIGN KEY (`hotel_id`) REFERENCES `Hotel_Details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `FK_Packages_Room` (`room_id`),
+  CONSTRAINT `FK_Packages_Room` FOREIGN KEY (`room_id`) REFERENCES `Room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table RelationalDB.Packages: ~0 rows (approximately)
+-- Dumping data for table RelationalDB.Packages: ~1 rows (approximately)
 DELETE FROM `Packages`;
 /*!40000 ALTER TABLE `Packages` DISABLE KEYS */;
+INSERT INTO `Packages` (`id`, `name`, `room_id`, `lastupdate`) VALUES
+	(1, 'hrs', 1, '2018-01-04 21:19:22');
 /*!40000 ALTER TABLE `Packages` ENABLE KEYS */;
 
 
 -- Dumping structure for table RelationalDB.Package_Has_Validity
 CREATE TABLE IF NOT EXISTS `Package_Has_Validity` (
-  `packageid` int(11) NOT NULL,
-  `validityid` int(11) NOT NULL,
-  PRIMARY KEY (`packageid`,`validityid`),
-  KEY `FK_Package_Has_Validity_Validity` (`validityid`),
-  CONSTRAINT `FK_Package_Has_Validity_Packages` FOREIGN KEY (`packageid`) REFERENCES `Packages` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Package_Has_Validity_Validity` FOREIGN KEY (`validityid`) REFERENCES `Validity` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `packageId` int(11) NOT NULL,
+  `validityId` int(11) NOT NULL,
+  PRIMARY KEY (`packageId`,`validityId`),
+  KEY `FK_Package_Has_Validity_Validity` (`validityId`),
+  CONSTRAINT `FK_Package_Has_Validity_Packages` FOREIGN KEY (`packageId`) REFERENCES `Packages` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Package_Has_Validity_Validity` FOREIGN KEY (`validityId`) REFERENCES `Validity` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table RelationalDB.Package_Has_Validity: ~0 rows (approximately)
+-- Dumping data for table RelationalDB.Package_Has_Validity: ~1 rows (approximately)
 DELETE FROM `Package_Has_Validity`;
 /*!40000 ALTER TABLE `Package_Has_Validity` DISABLE KEYS */;
+INSERT INTO `Package_Has_Validity` (`packageId`, `validityId`) VALUES
+	(1, 1);
 /*!40000 ALTER TABLE `Package_Has_Validity` ENABLE KEYS */;
 
 
--- Dumping structure for table RelationalDB.test
-CREATE TABLE IF NOT EXISTS `test` (
+-- Dumping structure for table RelationalDB.Room
+CREATE TABLE IF NOT EXISTS `Room` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `lastupdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table RelationalDB.test: ~0 rows (approximately)
-DELETE FROM `test`;
-/*!40000 ALTER TABLE `test` DISABLE KEYS */;
-/*!40000 ALTER TABLE `test` ENABLE KEYS */;
+-- Dumping data for table RelationalDB.Room: ~1 rows (approximately)
+DELETE FROM `Room`;
+/*!40000 ALTER TABLE `Room` DISABLE KEYS */;
+INSERT INTO `Room` (`id`, `name`, `lastupdate`) VALUES
+	(1, 'single', '2018-01-04 21:17:09');
+/*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 
 
 -- Dumping structure for table RelationalDB.Validity
 CREATE TABLE IF NOT EXISTS `Validity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start` date DEFAULT NULL,
-  `end` date DEFAULT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
   `lastupdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table RelationalDB.Validity: ~0 rows (approximately)
+-- Dumping data for table RelationalDB.Validity: ~1 rows (approximately)
 DELETE FROM `Validity`;
 /*!40000 ALTER TABLE `Validity` DISABLE KEYS */;
+INSERT INTO `Validity` (`id`, `start`, `end`, `lastupdate`) VALUES
+	(1, '2018-01-05', '2018-01-05', '2018-01-05 22:35:02');
 /*!40000 ALTER TABLE `Validity` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
